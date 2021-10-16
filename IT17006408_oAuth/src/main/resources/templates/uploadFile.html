@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create files to G-Drive</title>
+    <link href = "webjars/bootstrap/4.1.3/css/bootstrap.min.css" ref="stylesheet">
+    <script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!--<script src="index.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#createFolderButton").click(function(){
+                var folderName = prompt("Enter folder name");
+                $.ajax({
+                    url: "http://localhost:8080/createFolder/" + folderName
+                }).done(function (data) {
+                    console.dir(data)
+                })
+            });
+            // http://localhost:8080/user#
+            $("#uploadFileInFolder").click(function () {
+                $.ajax({
+                    url: "/uploadInFolder"
+                }).done(function (data) {
+                    alert(data.message);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1 class="display-4 text-center text-white">Billboard Management System</h1>
+    <div class="text-center text-white">Add Billboard Designs to your Drive</div>
+    <div id="pages">
+
+        <div class="collapse" id="folder">
+            <div class="card card-body">
+                Create Folder Option:
+                <button class="btn btn-secondary" id="createFolderButton"> Create Folder for Billboard Designs</button>
+
+                <br/><br/>
+                Upload Billboard Designs:
+                <button class="btn btn-secondary" id="uploadFileInFolder"> Upload Designs</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
